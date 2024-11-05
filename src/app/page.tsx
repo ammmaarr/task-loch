@@ -1,101 +1,163 @@
+"use client";
+import Bell from "./Bell";
+import Chart from "./Chart";
+import Clock from "./Clock";
+import NotifyAt from "./Notifications/NotifyAt";
+import WalletActive from "./Notifications/WalletActive";
+import WalletsMove from "./Notifications/WalletsMove";
+import NotificationWrapper from "./NotificationWrapper";
+import SmallBell from "./SmallBell";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css/bundle";
+import "swiper/css/navigation";
 import Image from "next/image";
+import cohorts from "./cohorts.png";
+import Eye from "./Eye";
+import Vector from "./Vector";
+import Testimonial from "./Testimonial";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import SignUp from "./SignUp";
+import RightArrow from "./RightArrow";
+import SideMenuIcon from "./SideMenuIcon";
+import { Autoplay } from "swiper/modules";
 
-export default function Home() {
+const TESTIMONIALS = [
+  {
+    name: "Shiv S",
+    title: "Co-Founder Magik Labs",
+    text: "Managing my own portfolio is helpful and well designed. What’s really interesting is watching the whales though. No one else has made whale tracking so simple.",
+  },
+  {
+    name: "Jack F",
+    title: "Ex Blackrock PM",
+    text: "Love how Loch integrates portfolio analytics and whale watching into one unified app.",
+  },
+  {
+    name: "Yash P",
+    title: "Research, 3poch Crypto Hedge Fund",
+    text: "I use Loch everyday now. I don't think I could analyze crypto whale trends markets without it. I'm addicted!",
+  },
+];
+
+export interface testimonialDetails {
+  name: string;
+  title: string;
+  text: string;
+}
+
+const Home = () => {
+  const [showSignUp, setShowSignUp] = useState(false);
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="w-screen grid lg:grid-cols-[55%_45%] bg-black">
+      <div className="relative isolate before:absolute before:inset-0 before:scale-150 before:content-[''] before:-z-10 before:bg-main-gradient py-32 p-8 xl:pl-24 flex flex-col gap-20 overflow-hidden">
+        <div className="bg-transparent grid xl:grid-cols-2 gap-10 overflow-hidden">
+          <div className="flex flex-col gap-4 text-[#F2F2F2] text-pretty xl:pr-20">
+            <Bell />
+            <h4 className="text-[31px] font-medium leading-[37.2px] pr-[9px] text-shadow">
+              Get notified when a highly correlated whale makes a move
+            </h4>
+            <p className="text-base font-medium leading-[19.2px] opacity-70">
+              Find out when a certain whale moves more than any preset amount
+              on-chain or when a dormant whale you care about becomes active.
+            </p>
+          </div>
+          <div className="xl:ml-10 w-fit overflow-x-hidden relative after:pointer-events-none after:z-10 after:opacity-50 after:absolute after:content-[''] after:inset-0 after:bg-overlay h-fit">
+            <Swiper
+              loop={true}
+              spaceBetween={10}
+              slidesPerView={2}
+              autoplay={{
+                delay: 1000,
+                pauseOnMouseEnter: true,
+              }}
+              modules={[Autoplay]}
+            >
+              <SwiperSlide className="!w-auto">
+                <NotificationWrapper ctaText="Save" Icon={SmallBell}>
+                  <NotifyAt />
+                </NotificationWrapper>
+              </SwiperSlide>
+              <SwiperSlide className="!w-auto">
+                <NotificationWrapper ctaText="check" Icon={Chart}>
+                  <WalletsMove />
+                </NotificationWrapper>
+              </SwiperSlide>
+              <SwiperSlide className="!w-auto">
+                <NotificationWrapper ctaText="check" Icon={Clock}>
+                  <WalletActive />
+                </NotificationWrapper>
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="grid xl:grid-cols-2 gap-5 xl:pr-20">
           <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src={cohorts}
+            alt="cohorts"
+            className="rounded-xl shadow-[0px_8px_22px_-6px_rgba(24,39,75,0.12)] row-start-2 xl:row-auto"
+            style={{ objectFit: "cover" }}
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="flex flex-col gap-4 text-[#F2F2F2] text-balance xl:pr-20 items-end text-end">
+            <Eye />
+            <h4 className="text-[31px] font-medium leading-[37.2px] pr-[9px]">
+              Watch what the whales are doing
+            </h4>
+            <p className="text-base font-medium leading-[19.2px] opacity-70">
+              All whales are not equal. Know exactly what the whales impacting
+              YOUR portfolio are doing.
+            </p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-4 xl:pr-20 overflow-hidden">
+          <h2 className="text-[25px] text-[#F2F2F2] leading-[30px] font-medium text-end">
+            Testimonials
+          </h2>
+          <div className="h-[1px] w-full bg-[rgba(229,229,230,0.5)] mb-6" />
+          <div className="grid xl:grid-flow-col gap-10 xl:items-end place-items-start">
+            <Vector />
+            <div className="xl:ml-10 h-fit flex row-start-1 xl:row-auto">
+              <Swiper loop={true} spaceBetween={10} slidesPerView={2}>
+                {TESTIMONIALS.map((testimonial, index) => (
+                  <SwiperSlide className="!w-auto" key={index}>
+                    <Testimonial details={testimonial} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="bg-white hidden lg:flex flex-col justify-center items-center">
+        <SignUp />
+      </div>
+      <div
+        className="absolute top-4 right-4 text-white text-4xl lg:hidden block"
+        onClick={() => setShowSignUp((prev) => !prev)}
+      >
+        <SideMenuIcon />
+      </div>
+      <AnimatePresence>
+        {showSignUp && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: "0" }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="bg-white flex flex-col justify-center items-center fixed w-screen h-screen"
+          >
+            <div
+              className="absolute top-4 right-4 lg:hidden block"
+              onClick={() => setShowSignUp((prev) => !prev)}
+            >
+              <RightArrow />
+            </div>
+            <SignUp />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
-}
+};
+
+export default Home;
