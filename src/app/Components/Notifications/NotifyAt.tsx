@@ -1,7 +1,7 @@
 const NotifyAt = () => {
   return (
     <div className="flex flex-col gap-[14px]">
-      <h4 className="text-[#19191A] text-sm font-medium leading-[16.8px] w-4/5">
+      <h4 className="text-main-dark text-sm font-medium leading-[16.8px] w-4/5">
         We’ll be sending notifications to you here
       </h4>
       <input

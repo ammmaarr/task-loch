@@ -19,6 +19,9 @@ const config: Config = {
       colors: {
         "main-dark": "#19191A",
       },
+      width: {
+        "main-container": "min(100%, 1440px)",
+      },
     },
   },
   plugins: [],
