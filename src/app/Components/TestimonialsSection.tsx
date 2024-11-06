@@ -30,16 +30,24 @@ const TestimonialsSection = () => {
       <div className="h-[1px] w-full bg-[rgba(229,229,230,0.5)] mb-6" />
       <div className="grid xl:grid-flow-col gap-10 xl:items-end place-items-start">
         <Vector />
-        <div className="xl:ml-10 xl:-mr-10 h-fit flex row-start-1 xl:row-auto">
+        <div className="xl:ml-10 xl:-mr-10 h-fit flex row-start-1 xl:row-auto w-full overflow-hidden">
           <Swiper
             loop={true}
-            spaceBetween={30}
-            slidesPerView={2}
+            spaceBetween={10}
+            slidesPerView={2.2}
             freeMode={true}
             modules={[FreeMode]}
+            breakpoints={{
+              1: {
+                slidesPerView: 1.1,
+              },
+              450: {
+                slidesPerView: 2.2,
+              },
+            }}
           >
-            {TESTIMONIALS.map((testimonial, index) => (
-              <SwiperSlide className="!w-auto" key={index}>
+            {TESTIMONIALS.concat(TESTIMONIALS).map((testimonial, index) => (
+              <SwiperSlide className={"!w-auto"} key={index}>
                 <Testimonial details={testimonial} />
               </SwiperSlide>
             ))}
