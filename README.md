@@ -5,6 +5,9 @@
 
 The website currently will stretch out to any screen size and fill it up. Option to limit the sizing to 1440px has been included but commented out (needs more final touches for responsive support)
 
+The website is hosted at:
+https://task-loch-h4fy.vercel.app/
+
 --------------------------------
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
