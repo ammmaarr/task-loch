@@ -15,7 +15,12 @@ const Home = () => {
     setShowSignUp((prev) => !prev);
   };
   return (
-    <div className="w-screen grid lg:grid-cols-[55%_45%] mx-auto">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+      className="w-screen grid lg:grid-cols-[55%_45%] mx-auto"
+    >
       <div
         className={
           "pt-20 pb-16 p-8 xl:pl-10 flex flex-col gap-20 overflow-hidden " +
@@ -54,7 +59,7 @@ const Home = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 
