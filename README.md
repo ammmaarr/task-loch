@@ -1,3 +1,12 @@
+*** IMPROVEMENTS TO MAKE GIVEN TIME ***
+- Custom dropdown and checkbox components.
+- Refining and fine-tuning Swiper JS components used for better responsive support.
+- Discussing consistency in spacing and sizing (especially font sizing and line height) with designer for better and more coherent user experience.
+
+The website currently will stretch out to any screen size and fill it up. Option to limit the sizing to 1440px has been included but commented out (needs more final touches for responsive support)
+
+--------------------------------
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
